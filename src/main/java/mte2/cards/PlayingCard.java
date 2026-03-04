@@ -4,7 +4,7 @@
 
 package mte2.cards;
 
-public class PlayingCard /* implements ... */ {
+public class PlayingCard implements Comparable<PlayingCard> {
     
     private final Suit suit;  // The suit of this card.
     private final Rank rank;  // The rank of this card.
@@ -23,22 +23,58 @@ public class PlayingCard /* implements ... */ {
     public String toString() {    return rank + " of " + suit;    }
 
     // compareTo() method
-    // ... 
-    // ...
+    @Override
+    public int compareTo(PlayingCard o1){
+        if(this.suit.equals(o1.getSuit())){
+            return o1.rank.getRankNumber()-this.rank.getRankNumber(); //khighest to lowest
+        }
+        else{
+            int card1;
+            int card2;
+            Suit spades = suit.SPADES;
+            Suit clubs = suit.CLUBS;
+            Suit hearts = suit.HEARTS;
+            if(this.suit==spades){
+                card1=4;
+            }
+            else if(this.suit==clubs){
+                card1=3;
+            }
+            else if(this.suit==hearts){
+                card1=2;
+            }
+            else{
+                card1=1;
+            }
+            if(o1.suit==spades){
+                card2=4;
+            }
+            else if(o1.suit==clubs){
+                card2=3;
+            }
+            else if(o1.suit==hearts){
+                card2=2;
+            }
+            else{
+                card2=1;
+            }
+            return card2-card1; //spade, club, heart, diamond
+        }
+    }
 
     public static void main(String[] args) {
         
-        // java.util.List<PlayingCard> cards = new java.util.LinkedList<>();
-        // cards.add(new PlayingCard(Suit.HEARTS, Rank.FIVE));
-        // cards.add(new PlayingCard(Suit.SPADES, Rank.TEN));
-        // cards.add(new PlayingCard(Suit.CLUBS, Rank.QUEEN));
+        java.util.List<PlayingCard> cards = new java.util.LinkedList<>();
+        cards.add(new PlayingCard(Suit.HEARTS, Rank.FIVE));
+        cards.add(new PlayingCard(Suit.SPADES, Rank.TEN));
+        cards.add(new PlayingCard(Suit.CLUBS, Rank.QUEEN));
         
-        // cards.add(new PlayingCard(Suit.DIAMONDS, Rank.TWO));
-        // cards.add(new PlayingCard(Suit.HEARTS, Rank.ACE));
-        // cards.add(new PlayingCard(Suit.SPADES, Rank.FOUR));
-        // cards.add(new PlayingCard(Suit.CLUBS, Rank.KING));
+        cards.add(new PlayingCard(Suit.DIAMONDS, Rank.TWO));
+        cards.add(new PlayingCard(Suit.HEARTS, Rank.ACE));
+        cards.add(new PlayingCard(Suit.SPADES, Rank.FOUR));
+        cards.add(new PlayingCard(Suit.CLUBS, Rank.KING));
 
-        // java.util.Collections.sort(cards);
-        // System.out.println(cards);
+        java.util.Collections.sort(cards);
+        System.out.println(cards);
     }
 }

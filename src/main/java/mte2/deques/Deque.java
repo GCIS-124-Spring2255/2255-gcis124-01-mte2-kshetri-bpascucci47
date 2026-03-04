@@ -4,7 +4,6 @@
 
 package mte2.deques;
 
-// public class Deque {
 public interface Deque<E> extends Iterable<E> {
     
     public void enqueueFront(E element);
